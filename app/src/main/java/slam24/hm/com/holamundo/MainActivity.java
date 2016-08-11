@@ -45,6 +45,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         switch (view.getId()){
             case R.id.activitytoactivity:
                 Intent intent =  new Intent(MainActivity.this,Main2Activity.class);
+                String dato1 = ET.getText().toString();
+                intent.putExtra("Dato",dato1);
                 startActivity(intent);
                 break;
             case R.id.toast:
