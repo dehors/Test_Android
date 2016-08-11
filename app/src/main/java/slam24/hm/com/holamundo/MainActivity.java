@@ -1,5 +1,6 @@
 package slam24.hm.com.holamundo;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -13,7 +14,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     TextView campo_texto;
     EditText ET;
     ImageView imagel;
-    Button botonenviar, botonn, toastButton;
+    Button botonenviar, botonn, toastButton,buttonActiviti;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,11 +35,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         toastButton = (Button)findViewById(R.id.toast);
         toastButton.setOnClickListener(this);
 
+        buttonActiviti = (Button) findViewById(R.id.activitytoactivity);
+        buttonActiviti.setOnClickListener(this);
+
     }
 
     @Override
     public void onClick(View view) {
         switch (view.getId()){
+            case R.id.activitytoactivity:
+                Intent intent =  new Intent(MainActivity.this,Main2Activity.class);
+                startActivity(intent);
+                break;
             case R.id.toast:
                 Toast.makeText(getApplicationContext(),"Esto es toast",Toast.LENGTH_SHORT).show();
                 break;
