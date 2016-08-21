@@ -1,24 +1,42 @@
 package slam24.hm.com.holamundo;
 
 import android.content.Intent;
+import android.graphics.Color;
+import android.hardware.Sensor;
+import android.hardware.SensorEvent;
+import android.hardware.SensorEventListener;
+import android.hardware.SensorManager;
+import android.hardware.camera2.params.ColorSpaceTransform;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener{
+public class MainActivity extends AppCompatActivity implements SensorEventListener, View.OnClickListener{
     TextView campo_texto;
     EditText ET;
     ImageView imagel;
     Button botonenviar, botonn, toastButton,buttonActiviti;
+    LinearLayout ln;
+    SensorManager sm;
+    Sensor s;
+    TextView tv;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        ln = (LinearLayout) findViewById(R.id.sensor);
+        tv = (TextView) findViewById(R.id.texto);
+
+        sm = (SensorManager)getSystemService(SENSOR_SERVICE);
+        s = sm.getDefaultSensor(Sensor.TYPE_PROXIMITY);
+        sm.registerListener(this, s, SensorManager.SENSOR_DELAY_NORMAL);
 
         campo_texto = (TextView) findViewById(R.id.texto);
         ET = (EditText) findViewById(R.id.username);
@@ -60,5 +78,23 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 campo_texto.setText("el otro boton");
                 break;
         }
+    }
+
+    @Override
+    public void onSensorChanged(SensorEvent sensorEvent) {
+        /*hacer cada vez que se cambiar el sensor*/
+        String texto = String.valueOf(sensorEvent.values[0]);
+        tv.setText(texto);
+        float valor = Float.parseFloat(texto);
+        if (valor == 0){
+            ln.setBackgroundColor(Color.BLUE);
+        }else {
+            ln.setBackgroundColor(Color.YELLOW);
+        }
+    }
+
+    @Override
+    public void onAccuracyChanged(Sensor sensor, int i) {
+
     }
 }
