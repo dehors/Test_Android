@@ -14,6 +14,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -21,7 +22,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     TextView campo_texto;
     EditText ET;
     ImageView imagel;
-    Button botonenviar, botonn, toastButton,buttonActiviti;
+    Button botonenviar, botonn, toastButton,buttonActiviti,botonlista;
     LinearLayout ln;
     SensorManager sm;
     Sensor s;
@@ -56,6 +57,9 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         buttonActiviti = (Button) findViewById(R.id.activitytoactivity);
         buttonActiviti.setOnClickListener(this);
 
+        botonlista = (Button) findViewById(R.id.activitynew);
+        botonlista.setOnClickListener(this);
+
     }
 
     @Override
@@ -66,6 +70,10 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
                 String dato1 = ET.getText().toString();
                 intent.putExtra("Dato",dato1);
                 startActivity(intent);
+                break;
+            case R.id.activitynew:
+                Intent intent3 = new Intent(MainActivity.this,Main3Activity.class);
+                startActivity(intent3);
                 break;
             case R.id.toast:
                 Toast.makeText(getApplicationContext(),"Esto es toast",Toast.LENGTH_SHORT).show();
