@@ -9,6 +9,7 @@ import android.hardware.SensorManager;
 import android.hardware.camera2.params.ColorSpaceTransform;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -60,8 +61,14 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         botonlista = (Button) findViewById(R.id.activitynew);
         botonlista.setOnClickListener(this);
 
-    }
+        setToolbar();
 
+    }
+    public void  setToolbar(){
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_actionbar);
+        toolbar.setTitle("SLAM24");
+        setSupportActionBar(toolbar);
+    }
     @Override
     public void onClick(View view) {
         switch (view.getId()){
