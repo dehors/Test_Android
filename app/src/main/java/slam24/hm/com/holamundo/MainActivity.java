@@ -23,7 +23,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     TextView campo_texto;
     EditText ET;
     ImageView imagel;
-    Button botonenviar, botonn, toastButton,buttonActiviti,botonlista;
+    Button botonenviar, botonn, toastButton,buttonActiviti,botonlista,btnwebview;
     LinearLayout ln;
     SensorManager sm;
     Sensor s;
@@ -61,6 +61,9 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         botonlista = (Button) findViewById(R.id.activitynew);
         botonlista.setOnClickListener(this);
 
+        btnwebview = (Button) findViewById(R.id.webv);
+        btnwebview.setOnClickListener(this);
+
         setToolbar();
 
     }
@@ -77,6 +80,10 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
                 String dato1 = ET.getText().toString();
                 intent.putExtra("Dato",dato1);
                 startActivity(intent);
+                break;
+            case R.id.webv:
+                Intent intenta = new Intent(MainActivity.this,Main4Activity.class);
+                startActivity(intenta);
                 break;
             case R.id.activitynew:
                 Intent intent3 = new Intent(MainActivity.this,Main3Activity.class);
